@@ -1,0 +1,62 @@
+{
+  "buildCommand": "npm run build",
+  "devCommand": "npm run dev",
+  "installCommand": "npm install",
+  "framework": "nextjs",
+  "nodeVersion": "18.x",
+  "env": {
+    "NEXT_PUBLIC_SUPABASE_URL": {
+      "description": "Supabase project URL"
+    },
+    "NEXT_PUBLIC_SUPABASE_ANON_KEY": {
+      "description": "Supabase anonymous key"
+    },
+    "SUPABASE_SERVICE_ROLE_KEY": {
+      "description": "Supabase service role key (secret)"
+    },
+    "NEXT_PUBLIC_ENABLE_AR": {
+      "description": "Enable AR features",
+      "value": "true"
+    },
+    "NEXT_PUBLIC_ENABLE_UGC": {
+      "description": "Enable UGC features",
+      "value": "true"
+    },
+    "NEXT_PUBLIC_ENABLE_REMIX": {
+      "description": "Enable remix features",
+      "value": "false"
+    },
+    "NEXT_PUBLIC_ENABLE_ANALYTICS": {
+      "description": "Enable analytics",
+      "value": "true"
+    }
+  },
+  "regions": [
+    "sfo1"
+  ],
+  "functions": {
+    "api/**/*.ts": {
+      "maxDuration": 60
+    }
+  },
+  "headers": [
+    {
+      "source": "/public/media/:path*",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/public/audio/:path*",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    }
+  ]
+}
